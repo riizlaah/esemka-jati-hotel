@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,6 +49,19 @@ namespace EsemkaJatiHotel
             {
                 return guid;
             }
+        }
+        public static string hashSHA256(string text)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+        public static bool isHashSame(string text, string hash)
+        {
+            var hashedText = hashSHA256(text);
+            return hashedText == hash;
         }
     }
 }

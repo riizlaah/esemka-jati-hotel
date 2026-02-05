@@ -43,7 +43,7 @@ namespace EsemkaJatiHotel
                 MessageBox.Show("Username tidak ditemukan!");
                 return;
             }
-            if(!isHashSame(password.Text.Trim(), user.Password))
+            if(!Helper.isHashSame(password.Text.Trim(), user.Password))
             {
                 MessageBox.Show("Kredensial salah!");
                 return;
@@ -62,18 +62,6 @@ namespace EsemkaJatiHotel
                 frontOffice.Show();
             }
         }
-        public static string hashSHA256(string text)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return Convert.ToBase64String(bytes);
-            }
-        }
-        public static bool isHashSame(string text, string hash)
-        {
-            var hashedText = hashSHA256(text);
-            return hashedText == hash;
-        }
+        
     }
 }

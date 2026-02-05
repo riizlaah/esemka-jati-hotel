@@ -91,6 +91,18 @@
     <Compile Include="Views\FrontOffice.Designer.cs">
       <DependentUpon>FrontOffice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MasterRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MasterRoom.Designer.cs">
+      <DependentUpon>MasterRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MasterEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MasterEmployee.Designer.cs">
+      <DependentUpon>MasterEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MasterRoomType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FrontOffice.resx">
       <DependentUpon>FrontOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MasterRoom.resx">
+      <DependentUpon>MasterRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MasterEmployee.resx">
+      <DependentUpon>MasterEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MasterRoomType.resx">
       <DependentUpon>MasterRoomType.cs</DependentUpon>

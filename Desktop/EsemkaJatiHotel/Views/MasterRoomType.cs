@@ -79,6 +79,11 @@ namespace EsemkaJatiHotel.Views
                 MessageBox.Show("Harga kamar tidak valid!");
                 return;
             }
+            if(!editing && selectedFilePath == "")
+            {
+                MessageBox.Show("Foto tipe kamar harus dipilih!");
+                return;
+            }
             if(editing)
             {
                 var selected = table1.SelectedRows[0].DataBoundItem as RoomType;
@@ -89,7 +94,6 @@ namespace EsemkaJatiHotel.Views
                 selected.Price = priceVal;
                 if(Path.GetFileName(selectedFilePath) != selected.Photo)
                 {
-                    File.Delete(dbFilePath);
                     var fileName = Path.GetFileNameWithoutExtension(selected.Photo);
                     var Extension = Path.GetExtension(selectedFilePath);
                     File.Copy(selectedFilePath, assetsDir + $"\\{fileName}.{Extension}", true);
@@ -135,11 +139,13 @@ namespace EsemkaJatiHotel.Views
             var res = MessageBox.Show("Apakah anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo);
             if (res == DialogResult.No) return;
             var selected = table1.SelectedRows[0].DataBoundItem as RoomType;
+            picture1.Image.Dispose();
             DBC.RoomTypes.Attach(selected);
             DBC.RoomTypes.Remove(selected);
             DBC.SaveChanges();
             RefreshData();
             updateFields(false, true);
+            File.Delete(assetsDir + "\\" + selected.Photo);
         }
 
         private void onTableCellClicked(object sender, DataGridViewCellEventArgs e)
@@ -150,6 +156,10 @@ namespace EsemkaJatiHotel.Views
             capacity.Value = selected.Capacity;
             price.Text = selected.Price.ToString();
             selectedFilePath = assetsDir + "\\" + selected.Photo;
+            if(picture1.Image != null)
+            {
+                picture1.Image.Dispose();
+            }
             picture1.Image = Image.FromFile(selectedFilePath);
             insert.Enabled = true;
             update.Enabled = true;

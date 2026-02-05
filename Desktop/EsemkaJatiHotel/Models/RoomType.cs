@@ -14,5 +14,9 @@ namespace EsemkaJatiHotel.Models
         public int Capacity { get; set; }
         public int Price { get; set; }
         [StringLength(100)] public string Photo { get; set; } = "default.jpg";
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

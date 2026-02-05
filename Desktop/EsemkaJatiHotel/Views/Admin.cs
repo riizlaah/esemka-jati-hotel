@@ -35,6 +35,18 @@ namespace EsemkaJatiHotel.Views
                 mrt.MdiParent = this;
                 mrt.Show();
             };
+            roomItem.Click += (s, e) =>
+            {
+                var mr = new MasterRoom(DBC);
+                mr.MdiParent = this;
+                mr.Show();
+            };
+            employeesItem.Click += (s, e) =>
+            {
+                var me = new MasterEmployee(DBC);
+                me.MdiParent = this;
+                me.Show();
+            };
         }
 
         private void Timer_Tick(object sender, EventArgs e)
