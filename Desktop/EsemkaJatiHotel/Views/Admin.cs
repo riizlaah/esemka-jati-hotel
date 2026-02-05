@@ -23,9 +23,18 @@ namespace EsemkaJatiHotel.Views
             login = loginForm;
             timer.Interval  = 1000;
             timer.Tick += Timer_Tick;
+            IsMdiContainer = true;
             InitializeComponent();
             timer.Start();
             Timer_Tick(this, EventArgs.Empty);
+            logoutMenuItem.Click += logout_Click;
+            exitMenuItem.Click += exit_Click;
+            roomTypeItem.Click += (s, e) =>
+            {
+                var mrt = new MasterRoomType(DBC);
+                mrt.MdiParent = this;
+                mrt.Show();
+            };
         }
 
         private void Timer_Tick(object sender, EventArgs e)

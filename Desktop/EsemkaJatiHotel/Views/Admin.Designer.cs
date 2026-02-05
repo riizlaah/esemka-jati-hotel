@@ -37,13 +37,13 @@
             this.FDItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reqAddItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomTypeItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.roomItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.exit = new System.Windows.Forms.Button();
+            this.logout = new System.Windows.Forms.Button();
             this.timeLb = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.employee = new System.Windows.Forms.Button();
-            this.logout = new System.Windows.Forms.Button();
-            this.exit = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             this.master});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1140, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1216, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,7 +66,7 @@
             this.logoutMenuItem,
             this.exitMenuItem});
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(46, 24);
+            this.file.Size = new System.Drawing.Size(46, 26);
             this.file.Text = "File";
             // 
             // logoutMenuItem
@@ -90,7 +90,7 @@
             this.roomTypeItem,
             this.roomItem});
             this.master.Name = "master";
-            this.master.Size = new System.Drawing.Size(68, 24);
+            this.master.Size = new System.Drawing.Size(68, 26);
             this.master.Text = "Master";
             // 
             // employeesItem
@@ -117,15 +117,20 @@
             this.roomTypeItem.Size = new System.Drawing.Size(224, 26);
             this.roomTypeItem.Text = "Room Type";
             // 
+            // roomItem
+            // 
+            this.roomItem.Name = "roomItem";
+            this.roomItem.Size = new System.Drawing.Size(224, 26);
+            this.roomItem.Text = "Room";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.26878F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.73122F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 561F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
             this.tableLayoutPanel1.Controls.Add(this.exit, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.logout, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.timeLb, 4, 0);
@@ -136,22 +141,38 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1140, 36);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1216, 36);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // roomItem
+            // exit
             // 
-            this.roomItem.Name = "roomItem";
-            this.roomItem.Size = new System.Drawing.Size(224, 26);
-            this.roomItem.Text = "Room";
+            this.exit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exit.Location = new System.Drawing.Point(285, 3);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(126, 30);
+            this.exit.TabIndex = 11;
+            this.exit.Text = "Exit";
+            this.exit.UseVisualStyleBackColor = true;
+            this.exit.Click += new System.EventHandler(this.exit_Click);
+            // 
+            // logout
+            // 
+            this.logout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logout.Location = new System.Drawing.Point(153, 3);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(126, 30);
+            this.logout.TabIndex = 10;
+            this.logout.Text = "Log Out";
+            this.logout.UseVisualStyleBackColor = true;
+            this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
             // timeLb
             // 
             this.timeLb.AutoSize = true;
             this.timeLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeLb.Location = new System.Drawing.Point(922, 0);
+            this.timeLb.Location = new System.Drawing.Point(978, 0);
             this.timeLb.Name = "timeLb";
-            this.timeLb.Size = new System.Drawing.Size(215, 36);
+            this.timeLb.Size = new System.Drawing.Size(235, 36);
             this.timeLb.TabIndex = 7;
             this.timeLb.Text = "4 Feb 2026, 14:39:50";
             this.timeLb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -160,7 +181,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(361, 0);
+            this.label1.Location = new System.Drawing.Point(417, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(555, 36);
             this.label1.TabIndex = 8;
@@ -172,38 +193,16 @@
             this.employee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employee.Location = new System.Drawing.Point(3, 3);
             this.employee.Name = "employee";
-            this.employee.Size = new System.Drawing.Size(94, 30);
+            this.employee.Size = new System.Drawing.Size(144, 30);
             this.employee.TabIndex = 9;
             this.employee.Text = "Employee";
             this.employee.UseVisualStyleBackColor = true;
-            // 
-            // logout
-            // 
-            this.logout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logout.Location = new System.Drawing.Point(103, 3);
-            this.logout.Name = "logout";
-            this.logout.Size = new System.Drawing.Size(120, 30);
-            this.logout.TabIndex = 10;
-            this.logout.Text = "Log Out";
-            this.logout.UseVisualStyleBackColor = true;
-            this.logout.Click += new System.EventHandler(this.logout_Click);
-            // 
-            // exit
-            // 
-            this.exit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.exit.Location = new System.Drawing.Point(229, 3);
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(126, 30);
-            this.exit.TabIndex = 11;
-            this.exit.Text = "Exit";
-            this.exit.UseVisualStyleBackColor = true;
-            this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 478);
+            this.ClientSize = new System.Drawing.Size(1216, 649);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

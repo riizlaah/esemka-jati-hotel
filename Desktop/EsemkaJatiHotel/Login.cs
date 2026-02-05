@@ -22,6 +22,7 @@ namespace EsemkaJatiHotel
         {
             DBC = new EJHDBC();
             InitializeComponent();
+            Debug.WriteLine("App Data Dir: " + Helper.GetAssetsDir());
         }
 
         private void onTryLogin(object sender, EventArgs e)
