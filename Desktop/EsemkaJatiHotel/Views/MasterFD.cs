@@ -13,21 +13,22 @@ using System.Windows.Forms;
 
 namespace EsemkaJatiHotel.Views
 {
-    public partial class MasterRoomType : Form
+    public partial class MasterFD : Form
     {
         EJHDBC DBC;
         bool editing = false;
         string selectedFilePath = "";
-        string assetsDir = Helper.GetAssetsDir("room_types");
-        public MasterRoomType(EJHDBC dbc)
+        string assetsDir = Helper.GetAssetsDir("food_n_drinks");
+        public MasterFD(EJHDBC dbc)
         {
             DBC = dbc;
             InitializeComponent();
             filePicker.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             filePicker.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
             Helper.GenerateTableColumn(table1,
-                new string[] { "Nama", "Kapasitas", "Harga per Malam"},
-                new string[] { "Name", "Capacity", "Price" });
+                new string[] { "Name", "Type", "Price"},
+                new string[] { "Name", "LongType", "Price" });
+            types.Items.AddRange(new string[] { "Food", "Drinks" });
             RefreshData();
             updateFields(false, true);
             insert.Enabled = true;
@@ -37,7 +38,7 @@ namespace EsemkaJatiHotel.Views
 
         private void RefreshData()
         {
-            table1.DataSource = DBC.RoomTypes.ToList();
+            table1.DataSource = DBC.FoodAndDrinks.ToList();
         }
 
         private void updateFields(bool enabled = true, bool clear = false)
@@ -45,13 +46,13 @@ namespace EsemkaJatiHotel.Views
             if (clear)
             {
                 name.Text = "";
-                capacity.Value = 1;
+                types.SelectedIndex = -1;
                 price.Text = "";
                 picture1.Image = null;
                 selectedFilePath = "";
             }
             name.Enabled = enabled;
-            capacity.Enabled = enabled;
+            types.Enabled = enabled;
             price.Enabled = enabled;
             openFile.Enabled = enabled;
             insert.Enabled = !enabled;
@@ -66,31 +67,31 @@ namespace EsemkaJatiHotel.Views
         {
             if(name.Text.Trim() == "")
             {
-                MessageBox.Show("Nama tipe kamar tidak boleh kosong!");
+                MessageBox.Show("Nama makanan/minuman tidak boleh kosong!");
                 return;
             }
-            if(capacity.Value < 1)
+            if(types.SelectedIndex < 0)
             {
-                MessageBox.Show("Kapasitas kamar harus lebih dari 0!");
+                MessageBox.Show("Tipe tidak valid!");
                 return;
             }
             if(int.TryParse(price.Text.Trim(), out int priceVal) == false || priceVal < 0)
             {
-                MessageBox.Show("Harga kamar tidak valid!");
+                MessageBox.Show("Harga tidak valid!");
                 return;
             }
             if(!editing && selectedFilePath == "")
             {
-                MessageBox.Show("Foto tipe kamar harus dipilih!");
+                MessageBox.Show("Foto harus dipilih!");
                 return;
             }
             if(editing)
             {
-                var selected = table1.SelectedRows[0].DataBoundItem as RoomType;
+                var selected = table1.SelectedRows[0].DataBoundItem as FoodAndDrinks;
                 var dbFilePath = assetsDir + "\\" + selected.Photo;
-                DBC.RoomTypes.Attach(selected);
+                DBC.FoodAndDrinks.Attach(selected);
                 selected.Name = name.Text.Trim();
-                selected.Capacity = (int)capacity.Value;
+                selected.Type = types.SelectedIndex == 0 ? 'F' : 'D';
                 selected.Price = priceVal;
                 if(Path.GetFileName(selectedFilePath) != selected.Photo)
                 {
@@ -103,14 +104,14 @@ namespace EsemkaJatiHotel.Views
             {
                 var fileName = Helper.GenerateRandomString() + Path.GetExtension(selectedFilePath);
                 File.Copy(selectedFilePath, assetsDir + "\\" + fileName, true);
-                var newRoomType = new RoomType()
+                var newFoodAndDrinks = new FoodAndDrinks()
                 {
                     Name = name.Text.Trim(),
-                    Capacity = (int)capacity.Value,
+                    Type = types.SelectedIndex == 0 ? 'F' : 'D',
                     Price = priceVal,
                     Photo = fileName
                 };
-                DBC.RoomTypes.Add(newRoomType);
+                DBC.FoodAndDrinks.Add(newFoodAndDrinks);
             }
             DBC.SaveChanges();
             updateFields(false, true);
@@ -138,10 +139,10 @@ namespace EsemkaJatiHotel.Views
         {
             var res = MessageBox.Show("Apakah anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo);
             if (res == DialogResult.No) return;
-            var selected = table1.SelectedRows[0].DataBoundItem as RoomType;
+            var selected = table1.SelectedRows[0].DataBoundItem as FoodAndDrinks;
             picture1.Image.Dispose();
-            DBC.RoomTypes.Attach(selected);
-            DBC.RoomTypes.Remove(selected);
+            DBC.FoodAndDrinks.Attach(selected);
+            DBC.FoodAndDrinks.Remove(selected);
             DBC.SaveChanges();
             RefreshData();
             updateFields(false, true);
@@ -151,9 +152,9 @@ namespace EsemkaJatiHotel.Views
         private void onTableCellClicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            var selected = table1.Rows[e.RowIndex].DataBoundItem as RoomType;
+            var selected = table1.Rows[e.RowIndex].DataBoundItem as FoodAndDrinks;
             name.Text = selected.Name;
-            capacity.Value = selected.Capacity;
+            types.SelectedIndex = selected.Type == 'F' ? 0 : 1;
             price.Text = selected.Price.ToString();
             selectedFilePath = assetsDir + "\\" + selected.Photo;
             if(picture1.Image != null)

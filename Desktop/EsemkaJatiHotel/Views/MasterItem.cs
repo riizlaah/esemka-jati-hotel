@@ -14,19 +14,17 @@ using System.Windows.Forms;
 
 namespace EsemkaJatiHotel.Views
 {
-    public partial class MasterRoom : Form
+    public partial class MasterItem : Form
     {
         EJHDBC DBC;
         bool editing = false;
-        public MasterRoom(EJHDBC dbc)
+        public MasterItem(EJHDBC dbc)
         {
             DBC = dbc;
             InitializeComponent();
             Helper.GenerateTableColumn(table1,
-                new string[] { "Room Number", "Room Type", "Room Floor", "Description"},
-                new string[] { "RoomNumber", "RoomType", "RoomFloor", "Description" });
-            roomTypes.DataSource = DBC.RoomTypes.ToList();
-            roomTypes.DisplayMember = "Name"; roomTypes.ValueMember = "Id";
+                new string[] { "Name", "Request Price", "Compensation Fee"},
+                new string[] { "Name", "RequestPrice", "CompensationFee"});
             RefreshData();
             updateFields(false, true);
             insert.Enabled = true;
@@ -36,22 +34,20 @@ namespace EsemkaJatiHotel.Views
 
         private void RefreshData()
         {
-            table1.DataSource = DBC.Rooms.Include("RoomType").ToList();
+            table1.DataSource = DBC.Items.ToList();
         }
 
         private void updateFields(bool enabled = true, bool clear = false)
         {
             if (clear)
             {
-                roomNumber.Text = "";
-                roomTypes.SelectedIndex = -1;
-                roomFloor.Text = "";
-                description.Text = "";
+                name.Text = "";
+                reqPrice.Text = "";
+                compFee.Text = "";
             }
-            roomNumber.Enabled = enabled;
-            roomTypes.Enabled = enabled;
-            roomFloor.Enabled = enabled;
-            description.Enabled = enabled;
+            name.Enabled = enabled;
+            reqPrice.Enabled = enabled;
+            compFee.Enabled = enabled;
             insert.Enabled = !enabled;
             update.Enabled = !enabled && table1.SelectedRows.Count > 0;
             delete.Enabled = !enabled && table1.SelectedRows.Count > 0;
@@ -62,45 +58,38 @@ namespace EsemkaJatiHotel.Views
 
         private void onSave(object sender, EventArgs e)
         {
-            if(roomNumber.Text.Trim() == "")
+            if(name.Text.Trim() == "")
             {
-                MessageBox.Show("No. Ruangan tidak boleh kosong!");
+                MessageBox.Show("Nama Item tidak boleh kosong!");
                 return;
             }
-            if(roomTypes.SelectedItem == null)
+            if (!int.TryParse(reqPrice.Text, out int reqVal))
             {
-                MessageBox.Show("Tipe kamar tidak boleh kosong!");
+                MessageBox.Show("Request Price tidak valid!");
                 return;
             }
-            if (roomFloor.Text.Trim() == "")
+            if (!int.TryParse(compFee.Text, out int compVal))
             {
-                MessageBox.Show("No. Lantai tidak boleh kosong!");
-                return;
-            }
-            if (description.Text.Trim() == "")
-            {
-                MessageBox.Show("Deskripsi tidak boleh kosong!");
+                MessageBox.Show("Compensation Fee tidak valid!");
                 return;
             }
             if (editing)
             {
-                var selected = table1.SelectedRows[0].DataBoundItem as Room;
-                DBC.Rooms.Attach(selected);
-                selected.RoomNumber = roomNumber.Text.Trim();
-                selected.RoomFLoor = roomFloor.Text;
-                selected.RoomTypeId = (int)roomTypes.SelectedValue;
-                selected.Description = description.Text.Trim();
+                var selected = table1.SelectedRows[0].DataBoundItem as Item;
+                DBC.Items.Attach(selected);
+                selected.Name = name.Text.Trim();
+                selected.RequestPrice = reqVal;
+                selected.CompensationFee = compVal;
                 DBC.Entry(selected).State = System.Data.Entity.EntityState.Modified;
             } else
             {
-                var newRoom = new Room()
+                var newItem = new Item()
                 {
-                    RoomNumber = roomNumber.Text.Trim(),
-                    RoomTypeId = (int)roomTypes.SelectedValue,
-                    RoomFLoor = roomFloor.Text.Trim(),
-                    Description = description.Text.Trim(),
+                    Name = name.Text.Trim(),
+                    RequestPrice = reqVal,
+                    CompensationFee = compVal
                 };
-                DBC.Rooms.Add(newRoom);
+                DBC.Items.Add(newItem);
             }
             DBC.SaveChanges();
             updateFields(false, true);
@@ -128,9 +117,9 @@ namespace EsemkaJatiHotel.Views
         {
             var res = MessageBox.Show("Apakah anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo);
             if (res == DialogResult.No) return;
-            var selected = table1.SelectedRows[0].DataBoundItem as Room;
-            DBC.Rooms.Attach(selected);
-            DBC.Rooms.Remove(selected);
+            var selected = table1.SelectedRows[0].DataBoundItem as Item;
+            DBC.Items.Attach(selected);
+            DBC.Items.Remove(selected);
             DBC.SaveChanges();
             RefreshData();
             updateFields(false, true);
@@ -139,11 +128,10 @@ namespace EsemkaJatiHotel.Views
         private void onTableCellClicked(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            var selected = table1.Rows[e.RowIndex].DataBoundItem as Room;
-            roomNumber.Text = selected.RoomNumber;
-            roomTypes.SelectedValue = selected.RoomTypeId;
-            roomFloor.Text = selected.RoomFLoor;
-            description.Text = selected.Description;
+            var selected = table1.Rows[e.RowIndex].DataBoundItem as Item;
+            name.Text = selected.Name;
+            reqPrice.Text = selected.RequestPrice.ToString();
+            compFee.Text = selected.CompensationFee.ToString();
             insert.Enabled = true;
             update.Enabled = true;
             delete.Enabled = true;

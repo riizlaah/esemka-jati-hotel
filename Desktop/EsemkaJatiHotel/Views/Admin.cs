@@ -41,22 +41,31 @@ namespace EsemkaJatiHotel.Views
                 mr.MdiParent = this;
                 mr.Show();
             };
-            employeesItem.Click += (s, e) =>
+            employeesItem.Click += EmployeeClicked;
+            reqAddItem.Click += (s, e) =>
             {
-                var me = new MasterEmployee(DBC);
-                me.MdiParent = this;
-                me.Show();
+                var masterItem = new MasterItem(DBC);
+                masterItem.MdiParent = this;
+                masterItem.Show();
             };
+            FDItem.Click += (s, e) =>
+            {
+                var mfd = new MasterFD(DBC);
+                mfd.MdiParent = this;
+                mfd.Show();
+            };
+        }
+
+        private void EmployeeClicked(object s, EventArgs e)
+        {
+            var me = new MasterEmployee(DBC);
+            me.MdiParent = this;
+            me.Show();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             timeLb.Text = DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void logout_Click(object sender, EventArgs e)

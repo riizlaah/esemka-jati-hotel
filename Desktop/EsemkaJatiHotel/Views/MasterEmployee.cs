@@ -66,8 +66,8 @@ namespace EsemkaJatiHotel.Views
             jobs.Enabled = enabled;
             openFile.Enabled = enabled;
             insert.Enabled = !enabled;
-            update.Enabled = !enabled;
-            delete.Enabled = !enabled;
+            update.Enabled = !enabled && table1.SelectedRows.Count > 0;
+            delete.Enabled = !enabled && table1.SelectedRows.Count > 0;
             save.Enabled = enabled;
             cancel.Enabled = enabled;
             table1.Enabled = !enabled;

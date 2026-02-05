@@ -66,19 +66,19 @@
             this.logoutMenuItem,
             this.exitMenuItem});
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(46, 26);
+            this.file.Size = new System.Drawing.Size(46, 24);
             this.file.Text = "File";
             // 
             // logoutMenuItem
             // 
             this.logoutMenuItem.Name = "logoutMenuItem";
-            this.logoutMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.logoutMenuItem.Size = new System.Drawing.Size(145, 26);
             this.logoutMenuItem.Text = "Log Out";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitMenuItem.Size = new System.Drawing.Size(145, 26);
             this.exitMenuItem.Text = "Exit";
             // 
             // master
@@ -90,7 +90,7 @@
             this.roomTypeItem,
             this.roomItem});
             this.master.Name = "master";
-            this.master.Size = new System.Drawing.Size(68, 26);
+            this.master.Size = new System.Drawing.Size(68, 24);
             this.master.Text = "Master";
             // 
             // employeesItem
@@ -130,7 +130,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 561F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 241F));
             this.tableLayoutPanel1.Controls.Add(this.exit, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.logout, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.timeLb, 4, 0);
@@ -197,6 +197,7 @@
             this.employee.TabIndex = 9;
             this.employee.Text = "Employee";
             this.employee.UseVisualStyleBackColor = true;
+            this.employee.Click += new System.EventHandler(this.EmployeeClicked);
             // 
             // Admin
             // 
