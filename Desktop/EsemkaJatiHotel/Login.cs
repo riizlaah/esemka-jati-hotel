@@ -62,6 +62,9 @@ namespace EsemkaJatiHotel
                 frontOffice.Show();
             }
         }
-        
+        protected override void OnClosed(EventArgs e)
+        {
+            DBC.Dispose();
+        }
     }
 }

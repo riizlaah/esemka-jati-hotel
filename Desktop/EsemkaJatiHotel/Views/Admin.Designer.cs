@@ -66,7 +66,7 @@
             this.logoutMenuItem,
             this.exitMenuItem});
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(46, 24);
+            this.file.Size = new System.Drawing.Size(46, 26);
             this.file.Text = "File";
             // 
             // logoutMenuItem
@@ -90,37 +90,37 @@
             this.roomTypeItem,
             this.roomItem});
             this.master.Name = "master";
-            this.master.Size = new System.Drawing.Size(68, 24);
+            this.master.Size = new System.Drawing.Size(68, 26);
             this.master.Text = "Master";
             // 
             // employeesItem
             // 
             this.employeesItem.Name = "employeesItem";
-            this.employeesItem.Size = new System.Drawing.Size(224, 26);
+            this.employeesItem.Size = new System.Drawing.Size(194, 26);
             this.employeesItem.Text = "Employee";
             // 
             // FDItem
             // 
             this.FDItem.Name = "FDItem";
-            this.FDItem.Size = new System.Drawing.Size(224, 26);
+            this.FDItem.Size = new System.Drawing.Size(194, 26);
             this.FDItem.Text = "Food and Drink";
             // 
             // reqAddItem
             // 
             this.reqAddItem.Name = "reqAddItem";
-            this.reqAddItem.Size = new System.Drawing.Size(224, 26);
+            this.reqAddItem.Size = new System.Drawing.Size(194, 26);
             this.reqAddItem.Text = "Item";
             // 
             // roomTypeItem
             // 
             this.roomTypeItem.Name = "roomTypeItem";
-            this.roomTypeItem.Size = new System.Drawing.Size(224, 26);
+            this.roomTypeItem.Size = new System.Drawing.Size(194, 26);
             this.roomTypeItem.Text = "Room Type";
             // 
             // roomItem
             // 
             this.roomItem.Name = "roomItem";
-            this.roomItem.Size = new System.Drawing.Size(224, 26);
+            this.roomItem.Size = new System.Drawing.Size(194, 26);
             this.roomItem.Text = "Room";
             // 
             // tableLayoutPanel1

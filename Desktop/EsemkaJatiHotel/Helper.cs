@@ -20,6 +20,7 @@ namespace EsemkaJatiHotel
                 col.Name = header[i];
                 col.HeaderText = header[i];
                 col.DataPropertyName = bindProperty[i];
+                col.ReadOnly = true;
                 table.Columns.Add(col);
             }
         }

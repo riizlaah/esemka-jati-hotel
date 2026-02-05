@@ -13,7 +13,7 @@ namespace EsemkaJatiHotel.Models
         public int Id { get; set; }
         public int RoomTypeId { get; set; }
         [StringLength(50)] public string RoomNumber { get; set; }
-        [StringLength(50)] public string RoomFLoor { get; set; }
+        [StringLength(50)] public string RoomFloor { get; set; }
         [Column(TypeName ="text")] public string Description { get; set; }
         public virtual RoomType RoomType { get; set; }
     }

@@ -91,7 +91,7 @@ namespace EsemkaJatiHotel.Views
                 var dbFilePath = assetsDir + "\\" + selected.Photo;
                 DBC.FoodAndDrinks.Attach(selected);
                 selected.Name = name.Text.Trim();
-                selected.Type = types.SelectedIndex == 0 ? 'F' : 'D';
+                selected.Type = types.SelectedIndex == 0 ? "F" : "D";
                 selected.Price = priceVal;
                 if(Path.GetFileName(selectedFilePath) != selected.Photo)
                 {
@@ -107,7 +107,7 @@ namespace EsemkaJatiHotel.Views
                 var newFoodAndDrinks = new FoodAndDrinks()
                 {
                     Name = name.Text.Trim(),
-                    Type = types.SelectedIndex == 0 ? 'F' : 'D',
+                    Type = types.SelectedIndex == 0 ? "F" : "D",
                     Price = priceVal,
                     Photo = fileName
                 };
@@ -154,7 +154,7 @@ namespace EsemkaJatiHotel.Views
             if (e.RowIndex < 0) return;
             var selected = table1.Rows[e.RowIndex].DataBoundItem as FoodAndDrinks;
             name.Text = selected.Name;
-            types.SelectedIndex = selected.Type == 'F' ? 0 : 1;
+            types.SelectedIndex = selected.Type == "F" ? 0 : 1;
             price.Text = selected.Price.ToString();
             selectedFilePath = assetsDir + "\\" + selected.Photo;
             if(picture1.Image != null)

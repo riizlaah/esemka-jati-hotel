@@ -22,10 +22,20 @@ namespace EsemkaJatiHotel.Views
             DBC = dbc;
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
+            IsMdiContainer = true;
             InitializeComponent();
             timer.Start();
             login = loginForm;
             Timer_Tick(this, EventArgs.Empty);
+            logoutItem.Click += logout_Click;
+            exitItem.Click += exit_Click;
+            reservationItem.Click += onReservationClicked;
+        }
+        private void onReservationClicked(object sender, EventArgs e)
+        {
+            var rf = new Reservation(DBC);
+            rf.MdiParent = this;
+            rf.Show();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

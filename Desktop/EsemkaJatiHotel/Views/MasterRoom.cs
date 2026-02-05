@@ -87,7 +87,7 @@ namespace EsemkaJatiHotel.Views
                 var selected = table1.SelectedRows[0].DataBoundItem as Room;
                 DBC.Rooms.Attach(selected);
                 selected.RoomNumber = roomNumber.Text.Trim();
-                selected.RoomFLoor = roomFloor.Text;
+                selected.RoomFloor = roomFloor.Text;
                 selected.RoomTypeId = (int)roomTypes.SelectedValue;
                 selected.Description = description.Text.Trim();
                 DBC.Entry(selected).State = System.Data.Entity.EntityState.Modified;
@@ -97,7 +97,7 @@ namespace EsemkaJatiHotel.Views
                 {
                     RoomNumber = roomNumber.Text.Trim(),
                     RoomTypeId = (int)roomTypes.SelectedValue,
-                    RoomFLoor = roomFloor.Text.Trim(),
+                    RoomFloor = roomFloor.Text.Trim(),
                     Description = description.Text.Trim(),
                 };
                 DBC.Rooms.Add(newRoom);
@@ -142,7 +142,7 @@ namespace EsemkaJatiHotel.Views
             var selected = table1.Rows[e.RowIndex].DataBoundItem as Room;
             roomNumber.Text = selected.RoomNumber;
             roomTypes.SelectedValue = selected.RoomTypeId;
-            roomFloor.Text = selected.RoomFLoor;
+            roomFloor.Text = selected.RoomFloor;
             description.Text = selected.Description;
             insert.Enabled = true;
             update.Enabled = true;
