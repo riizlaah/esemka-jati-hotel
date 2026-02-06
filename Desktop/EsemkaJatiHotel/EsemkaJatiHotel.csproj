@@ -91,6 +91,12 @@
     <Compile Include="Views\Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CheckIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CheckIn.Designer.cs">
+      <DependentUpon>CheckIn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     <EmbeddedResource Include="Views\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CheckIn.resx">
+      <DependentUpon>CheckIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CustomerTable.resx">
       <DependentUpon>CustomerTable.cs</DependentUpon>

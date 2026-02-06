@@ -73,5 +73,11 @@ namespace EsemkaJatiHotel
             var hashedText = hashSHA256(text);
             return hashedText == hash;
         }
+        public static Timer CreateTimer(int milis)
+        {
+            var timer = new Timer();
+            timer.Interval = milis;
+            return timer;
+        }
     }
 }

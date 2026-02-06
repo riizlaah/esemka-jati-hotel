@@ -17,6 +17,9 @@ namespace EsemkaJatiHotel.Models
         public int RoomPrice { get; set; }
         [Column(TypeName = "datetime")] public DateTime? CheckInDateTime { get; set; }
         [Column(TypeName = "datetime")] public DateTime? CheckOutDateTime { get; set; }
+        public string RoomNumber => Room != null ? Room.RoomNumber : "";
+        public string RoomFloor => Room != null ? Room.RoomFloor : "";
+        public string RoomType => Room != null ? Room.RoomType.ToString() : "";
         public virtual Reservation Reservation { get; set; }
         public virtual Room Room { get; set; }
     }

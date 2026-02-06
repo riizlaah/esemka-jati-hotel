@@ -30,12 +30,19 @@ namespace EsemkaJatiHotel.Views
             logoutItem.Click += logout_Click;
             exitItem.Click += exit_Click;
             reservationItem.Click += onReservationClicked;
+            checkInItem.Click += onCheckIn;
         }
         private void onReservationClicked(object sender, EventArgs e)
         {
             var rf = new Reservation(DBC);
             rf.MdiParent = this;
             rf.Show();
+        }
+        private void onCheckIn(object sender, EventArgs e)
+        {
+            var ci = new CheckIn(DBC);
+            ci.MdiParent = this;
+            ci.Show();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

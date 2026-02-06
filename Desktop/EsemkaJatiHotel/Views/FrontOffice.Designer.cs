@@ -61,7 +61,7 @@
             this.report});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1210, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1210, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -160,7 +160,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.timeLb, 6, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -219,6 +219,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Check In";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.onCheckIn);
             // 
             // label1
             // 
