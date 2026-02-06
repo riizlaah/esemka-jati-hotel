@@ -11,6 +11,8 @@ namespace EsemkaJatiHotel
 {
     public class Helper
     {
+        private static Random random = new Random();
+        const string CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         public static void GenerateTableColumn(DataGridView table, string[] header, string[] bindProperty)
         {
             table.AutoGenerateColumns = false;
@@ -50,6 +52,13 @@ namespace EsemkaJatiHotel
             {
                 return guid;
             }
+        }
+        public static string GenerateRandomStringV2(int length)
+        {
+            return new string(
+                Enumerable.Repeat(CHARS, length)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
         }
         public static string hashSHA256(string text)
         {

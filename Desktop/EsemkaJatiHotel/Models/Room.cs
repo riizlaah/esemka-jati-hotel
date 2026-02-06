@@ -16,5 +16,7 @@ namespace EsemkaJatiHotel.Models
         [StringLength(50)] public string RoomFloor { get; set; }
         [Column(TypeName ="text")] public string Description { get; set; }
         public virtual RoomType RoomType { get; set; }
+        public int RoomPrice => RoomType != null ? RoomType.Price : 0;
+        public virtual ICollection<ReservationRoom> ReservationRooms { get; set; }
     }
 }

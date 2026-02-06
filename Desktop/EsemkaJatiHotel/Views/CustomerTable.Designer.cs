@@ -44,6 +44,7 @@
             this.table0.Name = "table0";
             this.table0.RowHeadersWidth = 51;
             this.table0.RowTemplate.Height = 24;
+            this.table0.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.table0.Size = new System.Drawing.Size(399, 213);
             this.table0.TabIndex = 0;
             // 

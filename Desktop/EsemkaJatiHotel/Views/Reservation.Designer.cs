@@ -36,41 +36,42 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkoutDate = new System.Windows.Forms.DateTimePicker();
             this.checkinDate = new System.Windows.Forms.DateTimePicker();
-            this.staying = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.roomTypeSearch = new System.Windows.Forms.Button();
             this.roomTypes = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.addItem = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.additionalItems = new System.Windows.Forms.DataGridView();
             this.quantity = new System.Windows.Forms.NumericUpDown();
             this.items = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.itemPrice = new System.Windows.Forms.TextBox();
+            this.itemSubtotal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.totalPriceLb = new System.Windows.Forms.Label();
             this.submit = new System.Windows.Forms.Button();
-            this.table1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.availableRooms = new System.Windows.Forms.DataGridView();
+            this.selectedRooms = new System.Windows.Forms.DataGridView();
             this.addSelected = new System.Windows.Forms.Button();
             this.rmSelected = new System.Windows.Forms.Button();
+            this.staying = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.additionalItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableRooms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectedRooms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staying)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -128,9 +129,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.staying);
             this.groupBox2.Controls.Add(this.checkoutDate);
             this.groupBox2.Controls.Add(this.checkinDate);
-            this.groupBox2.Controls.Add(this.staying);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
@@ -139,14 +140,15 @@
             this.groupBox2.Size = new System.Drawing.Size(412, 150);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Reservaton\'s Infromation";
+            this.groupBox2.Text = "Reservation\'s Infromation";
             // 
             // checkoutDate
             // 
-            this.checkoutDate.Location = new System.Drawing.Point(122, 100);
+            this.checkoutDate.Location = new System.Drawing.Point(122, 109);
             this.checkoutDate.Name = "checkoutDate";
             this.checkoutDate.Size = new System.Drawing.Size(233, 22);
             this.checkoutDate.TabIndex = 4;
+            this.checkoutDate.ValueChanged += new System.EventHandler(this.onCheckOutChanged);
             // 
             // checkinDate
             // 
@@ -154,18 +156,12 @@
             this.checkinDate.Name = "checkinDate";
             this.checkinDate.Size = new System.Drawing.Size(233, 22);
             this.checkinDate.TabIndex = 3;
-            // 
-            // staying
-            // 
-            this.staying.Location = new System.Drawing.Point(122, 68);
-            this.staying.Name = "staying";
-            this.staying.Size = new System.Drawing.Size(233, 22);
-            this.staying.TabIndex = 0;
+            this.checkinDate.ValueChanged += new System.EventHandler(this.onCheckInChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 100);
+            this.label6.Location = new System.Drawing.Point(9, 109);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 16);
             this.label6.TabIndex = 2;
@@ -174,7 +170,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 68);
+            this.label5.Location = new System.Drawing.Point(9, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 16);
             this.label5.TabIndex = 1;
@@ -191,7 +187,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.roomTypeSearch);
             this.groupBox3.Controls.Add(this.roomTypes);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(441, 169);
@@ -201,14 +197,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Room\'s Information";
             // 
-            // button1
+            // roomTypeSearch
             // 
-            this.button1.Location = new System.Drawing.Point(122, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 34);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.roomTypeSearch.Location = new System.Drawing.Point(122, 63);
+            this.roomTypeSearch.Name = "roomTypeSearch";
+            this.roomTypeSearch.Size = new System.Drawing.Size(102, 34);
+            this.roomTypeSearch.TabIndex = 2;
+            this.roomTypeSearch.Text = "Search";
+            this.roomTypeSearch.UseVisualStyleBackColor = true;
+            this.roomTypeSearch.Click += new System.EventHandler(this.onRoomTypeSearch);
             // 
             // roomTypes
             // 
@@ -217,6 +214,7 @@
             this.roomTypes.Name = "roomTypes";
             this.roomTypes.Size = new System.Drawing.Size(233, 24);
             this.roomTypes.TabIndex = 1;
+            this.roomTypes.SelectedValueChanged += new System.EventHandler(this.onRoomTypesChanged);
             // 
             // label7
             // 
@@ -248,11 +246,11 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.addItem);
-            this.groupBox4.Controls.Add(this.dataGridView2);
+            this.groupBox4.Controls.Add(this.additionalItems);
             this.groupBox4.Controls.Add(this.quantity);
             this.groupBox4.Controls.Add(this.items);
-            this.groupBox4.Controls.Add(this.textBox4);
-            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.itemPrice);
+            this.groupBox4.Controls.Add(this.itemSubtotal);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label9);
@@ -266,59 +264,72 @@
             // 
             // addItem
             // 
-            this.addItem.Location = new System.Drawing.Point(478, 105);
+            this.addItem.Location = new System.Drawing.Point(506, 37);
             this.addItem.Name = "addItem";
-            this.addItem.Size = new System.Drawing.Size(96, 67);
+            this.addItem.Size = new System.Drawing.Size(68, 59);
             this.addItem.TabIndex = 12;
             this.addItem.Text = "Add";
             this.addItem.UseVisualStyleBackColor = true;
+            this.addItem.Click += new System.EventHandler(this.onItemAdded);
             // 
-            // dataGridView2
+            // additionalItems
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(11, 105);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(461, 150);
-            this.dataGridView2.TabIndex = 8;
+            this.additionalItems.AllowUserToAddRows = false;
+            this.additionalItems.AllowUserToDeleteRows = false;
+            this.additionalItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.additionalItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.additionalItems.Location = new System.Drawing.Point(11, 119);
+            this.additionalItems.MultiSelect = false;
+            this.additionalItems.Name = "additionalItems";
+            this.additionalItems.RowHeadersWidth = 51;
+            this.additionalItems.RowTemplate.Height = 24;
+            this.additionalItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.additionalItems.Size = new System.Drawing.Size(563, 136);
+            this.additionalItems.TabIndex = 8;
+            this.additionalItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.onAdditionalItemsCellContentClicked);
             // 
             // quantity
             // 
             this.quantity.Location = new System.Drawing.Point(66, 74);
             this.quantity.Name = "quantity";
-            this.quantity.Size = new System.Drawing.Size(215, 22);
+            this.quantity.Size = new System.Drawing.Size(176, 22);
             this.quantity.TabIndex = 7;
+            this.quantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.quantity.ValueChanged += new System.EventHandler(this.onItemQtyChanged);
             // 
             // items
             // 
             this.items.FormattingEnabled = true;
             this.items.Location = new System.Drawing.Point(66, 34);
             this.items.Name = "items";
-            this.items.Size = new System.Drawing.Size(215, 24);
+            this.items.Size = new System.Drawing.Size(176, 24);
             this.items.TabIndex = 6;
+            this.items.SelectedValueChanged += new System.EventHandler(this.onReqItemChanged);
             // 
-            // textBox4
+            // itemPrice
             // 
-            this.textBox4.Location = new System.Drawing.Point(366, 37);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(208, 22);
-            this.textBox4.TabIndex = 5;
+            this.itemPrice.Location = new System.Drawing.Point(313, 37);
+            this.itemPrice.Name = "itemPrice";
+            this.itemPrice.ReadOnly = true;
+            this.itemPrice.Size = new System.Drawing.Size(187, 22);
+            this.itemPrice.TabIndex = 5;
             // 
-            // textBox3
+            // itemSubtotal
             // 
-            this.textBox3.Location = new System.Drawing.Point(366, 74);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(208, 22);
-            this.textBox3.TabIndex = 4;
+            this.itemSubtotal.Location = new System.Drawing.Point(313, 74);
+            this.itemSubtotal.Name = "itemSubtotal";
+            this.itemSubtotal.ReadOnly = true;
+            this.itemSubtotal.Size = new System.Drawing.Size(187, 22);
+            this.itemSubtotal.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(307, 77);
+            this.label11.Location = new System.Drawing.Point(254, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 16);
             this.label11.TabIndex = 3;
@@ -327,7 +338,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(307, 37);
+            this.label10.Location = new System.Drawing.Point(254, 37);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 16);
             this.label10.TabIndex = 2;
@@ -351,14 +362,14 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Item";
             // 
-            // label3
+            // totalPriceLb
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(612, 489);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(241, 64);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Total Price:";
+            this.totalPriceLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalPriceLb.Location = new System.Drawing.Point(612, 489);
+            this.totalPriceLb.Name = "totalPriceLb";
+            this.totalPriceLb.Size = new System.Drawing.Size(241, 64);
+            this.totalPriceLb.TabIndex = 6;
+            this.totalPriceLb.Text = "Total Price:";
             // 
             // submit
             // 
@@ -368,32 +379,39 @@
             this.submit.TabIndex = 7;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = true;
+            this.submit.Click += new System.EventHandler(this.onSubmitReservation);
             // 
-            // table1
+            // availableRooms
             // 
-            this.table1.AllowUserToAddRows = false;
-            this.table1.AllowUserToDeleteRows = false;
-            this.table1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table1.Location = new System.Drawing.Point(13, 323);
-            this.table1.Name = "table1";
-            this.table1.ReadOnly = true;
-            this.table1.RowHeadersWidth = 51;
-            this.table1.RowTemplate.Height = 24;
-            this.table1.Size = new System.Drawing.Size(377, 150);
-            this.table1.TabIndex = 8;
+            this.availableRooms.AllowUserToAddRows = false;
+            this.availableRooms.AllowUserToDeleteRows = false;
+            this.availableRooms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.availableRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.availableRooms.Location = new System.Drawing.Point(13, 323);
+            this.availableRooms.MultiSelect = false;
+            this.availableRooms.Name = "availableRooms";
+            this.availableRooms.ReadOnly = true;
+            this.availableRooms.RowHeadersWidth = 51;
+            this.availableRooms.RowTemplate.Height = 24;
+            this.availableRooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.availableRooms.Size = new System.Drawing.Size(377, 150);
+            this.availableRooms.TabIndex = 8;
             // 
-            // dataGridView1
+            // selectedRooms
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(453, 323);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(397, 150);
-            this.dataGridView1.TabIndex = 9;
+            this.selectedRooms.AllowUserToAddRows = false;
+            this.selectedRooms.AllowUserToDeleteRows = false;
+            this.selectedRooms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.selectedRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.selectedRooms.Location = new System.Drawing.Point(453, 323);
+            this.selectedRooms.MultiSelect = false;
+            this.selectedRooms.Name = "selectedRooms";
+            this.selectedRooms.ReadOnly = true;
+            this.selectedRooms.RowHeadersWidth = 51;
+            this.selectedRooms.RowTemplate.Height = 24;
+            this.selectedRooms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.selectedRooms.Size = new System.Drawing.Size(397, 150);
+            this.selectedRooms.TabIndex = 9;
             // 
             // addSelected
             // 
@@ -403,6 +421,7 @@
             this.addSelected.TabIndex = 10;
             this.addSelected.Text = ">>";
             this.addSelected.UseVisualStyleBackColor = true;
+            this.addSelected.Click += new System.EventHandler(this.onSelectRoom);
             // 
             // rmSelected
             // 
@@ -412,6 +431,20 @@
             this.rmSelected.TabIndex = 11;
             this.rmSelected.Text = "<<";
             this.rmSelected.UseVisualStyleBackColor = true;
+            this.rmSelected.Click += new System.EventHandler(this.onUnselectRoom);
+            // 
+            // staying
+            // 
+            this.staying.Location = new System.Drawing.Point(122, 75);
+            this.staying.Name = "staying";
+            this.staying.ReadOnly = true;
+            this.staying.Size = new System.Drawing.Size(233, 22);
+            this.staying.TabIndex = 8;
+            this.staying.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Reservation
             // 
@@ -420,10 +453,10 @@
             this.ClientSize = new System.Drawing.Size(862, 751);
             this.Controls.Add(this.rmSelected);
             this.Controls.Add(this.addSelected);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.table1);
+            this.Controls.Add(this.selectedRooms);
+            this.Controls.Add(this.availableRooms);
             this.Controls.Add(this.submit);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.totalPriceLb);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -440,10 +473,11 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.additionalItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableRooms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectedRooms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staying)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,7 +494,7 @@
         private System.Windows.Forms.RadioButton addNew;
         private System.Windows.Forms.Panel custInfoPanel;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label totalPriceLb;
         private System.Windows.Forms.Button submit;
         private System.Windows.Forms.TextBox search;
         private System.Windows.Forms.Label label5;
@@ -468,23 +502,23 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker checkoutDate;
         private System.Windows.Forms.DateTimePicker checkinDate;
-        private System.Windows.Forms.TextBox staying;
         private System.Windows.Forms.ComboBox roomTypes;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button roomTypeSearch;
         private System.Windows.Forms.ComboBox items;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox itemPrice;
+        private System.Windows.Forms.TextBox itemSubtotal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView table1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView availableRooms;
+        private System.Windows.Forms.DataGridView selectedRooms;
         private System.Windows.Forms.Button addSelected;
         private System.Windows.Forms.Button rmSelected;
         private System.Windows.Forms.Button addItem;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView additionalItems;
         private System.Windows.Forms.NumericUpDown quantity;
+        private System.Windows.Forms.NumericUpDown staying;
     }
 }

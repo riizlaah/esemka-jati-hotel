@@ -15,5 +15,11 @@ namespace EsemkaJatiHotel.Models
         public int TotalPrice { get; set; }
         public virtual ReservationRoom ReservationRoom { get; set; }
         public virtual Item Item { get; set; }
+        public string ItemName => Item != null ? Item.Name : "";
+        public int ItemPrice => Item != null ? Item.RequestPrice : 0;
+        public void RecalculateTotalPrice()
+        {
+            TotalPrice = TotalPrice * Qty;
+        }
     }
 }
