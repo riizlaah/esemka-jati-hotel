@@ -139,6 +139,12 @@
     <Compile Include="Views\MasterRoomType.Designer.cs">
       <DependentUpon>MasterRoomType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReqAdditionalItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReqAdditionalItem.Designer.cs">
+      <DependentUpon>ReqAdditionalItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reservation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MasterRoomType.resx">
       <DependentUpon>MasterRoomType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReqAdditionalItem.resx">
+      <DependentUpon>ReqAdditionalItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reservation.resx">
       <DependentUpon>Reservation.cs</DependentUpon>

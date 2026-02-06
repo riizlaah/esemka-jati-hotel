@@ -61,7 +61,7 @@
             this.report});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1210, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1210, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,7 +71,7 @@
             this.logoutItem,
             this.exitItem});
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(46, 24);
+            this.file.Size = new System.Drawing.Size(46, 26);
             this.file.Text = "File";
             // 
             // logoutItem
@@ -94,7 +94,7 @@
             this.reqAddItem,
             this.checkOutItem});
             this.transaction.Name = "transaction";
-            this.transaction.Size = new System.Drawing.Size(98, 24);
+            this.transaction.Size = new System.Drawing.Size(98, 26);
             this.transaction.Text = "Transaction";
             // 
             // reservationItem
@@ -127,7 +127,7 @@
             this.checkInReportItem,
             this.guestsReportItem});
             this.report.Name = "report";
-            this.report.Size = new System.Drawing.Size(68, 24);
+            this.report.Size = new System.Drawing.Size(68, 26);
             this.report.Text = "Report";
             // 
             // checkInReportItem
@@ -160,7 +160,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.timeLb, 6, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));

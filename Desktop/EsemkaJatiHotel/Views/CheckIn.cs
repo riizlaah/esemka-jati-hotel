@@ -16,6 +16,7 @@ namespace EsemkaJatiHotel.Views
     {
         EJHDBC DBC;
         Timer timer;
+        Customer currCust;
         public CheckIn(EJHDBC dbc)
         {
             DBC = dbc;
@@ -93,6 +94,8 @@ namespace EsemkaJatiHotel.Views
                 DBC.Customers.Add(cust);
                 DBC.SaveChanges();
                 rroom.Reservation.CustomerId = cust.Id;
+            } else
+            {
             }
             rroom.CheckInDateTime = DateTime.Now;
             DBC.SaveChanges();
@@ -130,6 +133,7 @@ namespace EsemkaJatiHotel.Views
             }
             else
             {
+                currCust = customer;
                 name.Text = customer.Name;
                 email.Text = customer.Email;
                 age.Text = customer.Age.ToString();
@@ -158,6 +162,7 @@ namespace EsemkaJatiHotel.Views
                 var rroom = rooms.CurrentRow.DataBoundItem as ReservationRoom;
                 bookingCode.Text = rroom.Reservation.BookingCode;
                 var cust = rroom.Reservation.Customer;
+                currCust = cust;
                 phoneNum.Text = cust.PhoneNumber;
                 timer.Stop();
                 name.Text = cust.Name;
