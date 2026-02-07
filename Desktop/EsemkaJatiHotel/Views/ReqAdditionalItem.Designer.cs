@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.roomNumbers = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.addItem = new System.Windows.Forms.Button();
             this.additionalItems = new System.Windows.Forms.DataGridView();
@@ -43,7 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.totalPrice = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.additionalItems)).BeginInit();
@@ -61,6 +61,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rooms Occupied or Under Reservation";
             // 
+            // roomNumbers
+            // 
+            this.roomNumbers.FormattingEnabled = true;
+            this.roomNumbers.Location = new System.Drawing.Point(112, 30);
+            this.roomNumbers.Name = "roomNumbers";
+            this.roomNumbers.Size = new System.Drawing.Size(208, 24);
+            this.roomNumbers.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -69,14 +77,6 @@
             this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Room Number";
-            // 
-            // roomNumbers
-            // 
-            this.roomNumbers.FormattingEnabled = true;
-            this.roomNumbers.Location = new System.Drawing.Point(112, 30);
-            this.roomNumbers.Name = "roomNumbers";
-            this.roomNumbers.Size = new System.Drawing.Size(208, 24);
-            this.roomNumbers.TabIndex = 1;
             // 
             // groupBox4
             // 
@@ -121,10 +121,17 @@
             this.additionalItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.additionalItems.Size = new System.Drawing.Size(563, 136);
             this.additionalItems.TabIndex = 8;
+            this.additionalItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.onReqItemCellContenClicked);
+            this.additionalItems.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.onReqItemRemoved);
             // 
             // quantity
             // 
             this.quantity.Location = new System.Drawing.Point(66, 74);
+            this.quantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(176, 22);
             this.quantity.TabIndex = 7;
@@ -142,6 +149,7 @@
             this.items.Name = "items";
             this.items.Size = new System.Drawing.Size(176, 24);
             this.items.TabIndex = 6;
+            this.items.SelectedValueChanged += new System.EventHandler(this.onItemChanged);
             // 
             // itemPrice
             // 
@@ -197,28 +205,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(391, 20);
+            this.button1.Location = new System.Drawing.Point(388, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(186, 29);
             this.button1.TabIndex = 7;
             this.button1.Text = "Submit";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.onResvReqItemsSubmitted);
             // 
-            // label2
+            // totalPrice
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(372, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(219, 39);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Total Price: Rp0";
+            this.totalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalPrice.Location = new System.Drawing.Point(372, 52);
+            this.totalPrice.Name = "totalPrice";
+            this.totalPrice.Size = new System.Drawing.Size(219, 39);
+            this.totalPrice.TabIndex = 8;
+            this.totalPrice.Text = "Total Price: Rp0";
             // 
             // ReqAdditionalItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 362);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.totalPrice);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
@@ -251,6 +260,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label totalPrice;
     }
 }
