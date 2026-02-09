@@ -17,5 +17,6 @@ namespace EsemkaJatiHotel.Models
         [StringLength(6)] public string BookingCode { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual ICollection<ReservationRoom> ReservationRooms { get; set; }
     }
 }

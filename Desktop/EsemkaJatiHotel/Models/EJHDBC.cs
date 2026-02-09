@@ -37,5 +37,18 @@ namespace EsemkaJatiHotel.Models
             base.OnModelCreating(modelBuilder);
         }
     }
+
+    public class ReservationReport
+    {
+        public DateTime ReservationDate { get; set; }
+        public string BookingCode { get; set; }
+        public string GuessName { get; set; }
+        public string RoomType { get; set; }
+        public string RoomNumber { get; set; }
+        public int RoomPrice { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public int DaysLong { get; set; }
+    }
  
 }

@@ -33,6 +33,12 @@ namespace EsemkaJatiHotel.Views
             checkInItem.Click += onCheckIn;
             reqAddItem.Click += onResvReqItems;
             checkOutItem.Click += onCheckOut;
+            guestsReportItem.Click += (s, e) =>
+            {
+                var gr = new GuestReport(DBC);
+                gr.MdiParent = this;
+                gr.Show();
+            };
         }
         private void onReservationClicked(object sender, EventArgs e)
         {
