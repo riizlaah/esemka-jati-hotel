@@ -195,6 +195,9 @@
     <Compile Include="Views\Reservation.Designer.cs">
       <DependentUpon>Reservation.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CheckInReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CheckInReport.resx">
       <DependentUpon>CheckInReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CheckInReportViewer.resx">
+      <DependentUpon>CheckInReportViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CheckOut.resx">
       <DependentUpon>CheckOut.cs</DependentUpon>
@@ -257,6 +263,7 @@
       <DependentUpon>Reservation.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EsemkaJatiHotel.Models.ReservationReport.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
