@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Button
@@ -31,9 +32,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import ejh.id.minibar.ui.theme.DodgerBlue
 import ejh.id.minibar.ui.theme.EJHMiniBarTheme
 
 class MainActivity : ComponentActivity() {
@@ -59,69 +62,82 @@ fun Minibar(modifier: Modifier) {
     var quantity by remember {mutableStateOf("")}
     var price by remember {mutableStateOf("")}
     var subtotal by remember {mutableStateOf("")}
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Row(Modifier.fillMaxWidth().background(Color.Blue).padding(12.dp)) {
-            Text("LKS-SMK Jatim Mini Bar", fontSize = 3.em)
+    var isFood by remember { mutableStateOf(true) }
+    Column {
+        Row(Modifier.fillMaxWidth().background(DodgerBlue).padding(12.dp)) {
+            Text("LKS-SMK Jatim Mini Bar", fontSize = 3.em, color = Color.White, fontWeight = FontWeight.Bold)
         }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text("Room Number")
-            Button({roomNumberOpened = true}, shape = RectangleShape) {
-                Text("$selectedRoom")
-                Icon(Icons.Default.KeyboardArrowDown, "ArrowDown")
-                DropdownMenu(roomNumberOpened, {roomNumberOpened = false}) {
-                    for(i in 100..107) {
-                        DropdownMenuItem(onClick = {
-                            roomNumberOpened = false
-                            selectedRoom = i
+        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text("Room Number")
+                Button({roomNumberOpened = true}, shape = RectangleShape) {
+                    Text("$selectedRoom")
+                    Icon(Icons.Default.KeyboardArrowDown, "ArrowDown")
+                    DropdownMenu(roomNumberOpened, {roomNumberOpened = false}) {
+                        for(i in 100..107) {
+                            DropdownMenuItem(onClick = {
+                                roomNumberOpened = false
+                                selectedRoom = i
                             }, text = {Text("$i")})
+                        }
                     }
                 }
             }
-        }
-        Text("Type")
-        Column {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                RadioButton(false, onClick =  {})
-                Text("Food")
-            }
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                RadioButton(false, onClick =  {})
-                Text("Drink")
-            }
-        }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Item : ")
-            TextButton(onClick = {itemOpened = true}, modifier = Modifier.fillMaxWidth()) {
-                Text(selectedItem)
-                Icon(Icons.Default.KeyboardArrowDown, "ArrowDown")
-                DropdownMenu(itemOpened, {itemOpened = false}) {
-                    DropdownMenuItem(onClick = {itemOpened = false}, text = {
-                        Text("Makanan1")
-                    })
-                    DropdownMenuItem(onClick = {itemOpened = false}, text = {
-                        Text("Makanan2")
-                    })
-                    DropdownMenuItem(onClick = {itemOpened = false}, text = {
-                        Text("Makanan3")
-                    })
+            Text("Type")
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(isFood, onClick = {isFood = true})
+                    Text("Food")
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    RadioButton(!isFood, onClick = {isFood = false})
+                    Text("Drink")
                 }
             }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Item : ")
+                TextButton(onClick = {itemOpened = true}, modifier = Modifier.fillMaxWidth()) {
+                    Text(selectedItem)
+                    Icon(Icons.Default.KeyboardArrowDown, "ArrowDown")
+                    DropdownMenu(itemOpened, {itemOpened = false}) {
+                        DropdownMenuItem(onClick = {
+                            selectedItem = "Makanan1"
+                            itemOpened = false
+                            }, text = {
+                            Text("Makanan1")
+                        })
+                        DropdownMenuItem(onClick = {
+                            selectedItem = "Makanan2"
+                            itemOpened = false
+                            }, text = {
+                            Text("Makanan2")
+                        })
+                        DropdownMenuItem(onClick = {
+                            selectedItem = "Minuman1"
+                            itemOpened = false
+                            }, text = {
+                            Text("Minuman1")
+                        })
+                    }
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Price : ")
+                TextField(value = price, readOnly = true, onValueChange = {str:String -> price = str}, modifier = maxW())
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Quantity : ")
+                TextField(value = quantity, onValueChange = {str:String -> quantity = str}, modifier = maxW())
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Sub total : ")
+                TextField(value = subtotal, readOnly = true, onValueChange = {str:String -> subtotal = str}, modifier = maxW())
+            }
+            Button(onClick = {}, modifier = maxW(), shape = RoundedCornerShape(8.dp)) {
+                Text("Submit")
+            }
         }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Price : ")
-            TextField(value = price, readOnly = true, onValueChange = {str:String -> price = str})
-        }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Quantity : ")
-            TextField(value = quantity, onValueChange = {str:String -> quantity = str})
-        }
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Sub total : ")
-            TextField(value = subtotal, readOnly = true, onValueChange = {str:String -> subtotal = str})
-        }
-        Button(onClick = {}) {
-            Text("Submit")
-        }
+
     }
 }
 
