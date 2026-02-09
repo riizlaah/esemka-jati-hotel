@@ -32,6 +32,7 @@ namespace EsemkaJatiHotel.Views
             reservationItem.Click += onReservationClicked;
             checkInItem.Click += onCheckIn;
             reqAddItem.Click += onResvReqItems;
+            checkOutItem.Click += onCheckOut;
         }
         private void onReservationClicked(object sender, EventArgs e)
         {
@@ -44,6 +45,12 @@ namespace EsemkaJatiHotel.Views
             var ci = new CheckIn(DBC);
             ci.MdiParent = this;
             ci.Show();
+        }
+        private void onCheckOut(object sender, EventArgs e)
+        {
+            var co = new CheckOut(DBC);
+            co.MdiParent = this;
+            co.Show();
         }
 
         private void onResvReqItems(object sender, EventArgs e)

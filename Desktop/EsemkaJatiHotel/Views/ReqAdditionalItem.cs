@@ -29,6 +29,7 @@ namespace EsemkaJatiHotel.Views
             rmItemCol.Name = "Remove";
             rmItemCol.HeaderText = "Options";
             rmItemCol.Text = "Remove";
+            rmItemCol.UseColumnTextForButtonValue = true;
             additionalItems.Columns.Add(rmItemCol);
             roomNumbers.DisplayMember = "RoomNumber"; roomNumbers.ValueMember = "ReservationId";
             roomNumbers.DataSource = DBC.ReservationRooms.Include("Room").Where(r => r.CheckOutDateTime == null).ToList();
@@ -39,6 +40,11 @@ namespace EsemkaJatiHotel.Views
 
         private void onAddReqItemClicked(object sender, EventArgs e)
         {
+            if(roomNumbers.SelectedItem == null)
+            {
+                MessageBox.Show("Kamar belum dipilih!");
+                return;
+            }
             if(items.SelectedItem == null)
             {
                 MessageBox.Show("Item belum di pilih!");
@@ -92,6 +98,11 @@ namespace EsemkaJatiHotel.Views
 
         private void onResvReqItemsSubmitted(object sender, EventArgs e)
         {
+            if (roomNumbers.SelectedItem == null)
+            {
+                MessageBox.Show("Kamar belum dipilih!");
+                return;
+            }
             if (resvReqItems.Count == 0)
             {
                 MessageBox.Show("Tidak ada item tambahan di dalam tabel!");

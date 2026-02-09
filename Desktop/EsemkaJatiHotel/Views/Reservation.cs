@@ -42,6 +42,7 @@ namespace EsemkaJatiHotel.Views
             rmItemCol.Name = "Remove";
             rmItemCol.HeaderText = "Options";
             rmItemCol.Text = "Remove";
+            rmItemCol.UseColumnTextForButtonValue = true;
             additionalItems.Columns.Add(rmItemCol);
             selectedRooms.DataSource = SelectedRoomsData;
             changeCurrCustInfoMode(0);
