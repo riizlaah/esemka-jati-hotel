@@ -31,6 +31,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.core.text.isDigitsOnly
+import kotlinx.coroutines.launch
 import nr.dev.ejhminibar.ui.theme.DodgerBlue
 import nr.dev.ejhminibar.ui.theme.EJHMiniBarTheme
 
@@ -75,6 +77,7 @@ fun Minibar(modifier: Modifier) {
     var rooms by remember { mutableStateOf(listOf<Room>()) }
     var fds by remember { mutableStateOf(listOf<FD>()) }
     var filteredFDs by remember { mutableStateOf(listOf<FD>()) }
+    val scope = rememberCoroutineScope()
 
     fun filterFDs() {
         filteredFDs = if(isFood) {
@@ -225,7 +228,23 @@ fun Minibar(modifier: Modifier) {
             }
             Button(
                 onClick = {
-                    //...
+                    if(selectedRoom == null) return@Button
+                    if(selectedFD == null) return@Button
+                    if(!quantity.isDigitsOnly()) return@Button
+                    val qty = quantity.toIntOrNull() ?: 1
+                    if(qty <= 0) return@Button
+                    scope.launch {
+                        val code = HttpClient.sendFDReq(
+                            selectedFD!!.id,
+                            selectedRoom!!.id,
+                            qty,
+                            subtotal.toIntOrNull() ?: 0
+                        )
+                        isFood = true
+                        selectedRoom = null
+                        quantity = "1"
+                        roomNumber = "Select Room"
+                    }
                 }
             ) {
                 Text("Submit")

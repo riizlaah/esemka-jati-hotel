@@ -68,7 +68,6 @@ object HttpClient {
         val res = withContext(Dispatchers.IO) {
             send(HttpRequest(address + "/rooms"))
         }
-//        println(res.errors)
         val arr = JSONArray(res.body)
         val datas = mutableListOf<Room>()
         for(i in 0 until arr.length()) {
@@ -96,5 +95,15 @@ object HttpClient {
             ))
         }
         return datas
+    }
+    suspend fun sendFDReq(FDId: Int, roomId: Int, quantity: Int, totalPrice: Int) {
+        val body = """{"fdId": "$FDId", "roomId": "$roomId", "quantity": $quantity, "totalPrice": $totalPrice}"""
+        return withContext(Dispatchers.IO) {
+            send(HttpRequest(
+                address + "/fd_requests",
+                "POST",
+                body
+            )).code
+        }
     }
 }
