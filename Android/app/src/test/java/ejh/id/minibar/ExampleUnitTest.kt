@@ -1,5 +1,6 @@
 package ejh.id.minibar
 
+import org.json.*
 import org.junit.Test
 
 import org.junit.Assert.*

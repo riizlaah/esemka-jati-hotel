@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    {"id": "1", "number": "100"},
+    {"id": "2", "number": "101"},
+    {"id": "3", "number": "102"},
+    {"id": "4", "number": "103"}
+  ],
+  "fds": [
+    {"id": "1", "name": "BronzeQueen Chocolate Bar", "type": "F", "price": 20000},
+    {"id": "2", "name": "My Matcha", "type": "D", "price": 18000},
+    {"id": "3", "name": "Sari Roti Sandwich Chocolate", "type": "F", "price": 7000}
+  ],
+  "fd_requests": [
+    {"id": "1", "fdId": "1", "roomId": 1, "quantity": 1, "totalPrice": 20000}
+  ]
+}
