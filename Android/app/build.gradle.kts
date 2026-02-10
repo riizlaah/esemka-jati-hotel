@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "ejh.id.minibar"
+    namespace = "nr.dev.ejhminibar"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "ejh.id.minibar"
+        applicationId = "nr.dev.ejhminibar"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

@@ -1,4 +1,4 @@
-package ejh.id.minibar.ui.theme
+package nr.dev.ejhminibar.ui.theme
 
 import android.app.Activity
 import android.os.Build

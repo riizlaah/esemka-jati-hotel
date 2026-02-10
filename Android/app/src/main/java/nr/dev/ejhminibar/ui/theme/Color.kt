@@ -1,4 +1,4 @@
-package ejh.id.minibar.ui.theme
+package nr.dev.ejhminibar.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
