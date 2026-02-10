@@ -242,6 +242,9 @@ fun Minibar(modifier: Modifier) {
                         )
                         isFood = true
                         selectedRoom = null
+                        selectedFD = null
+                        fdName = "Select item"
+                        fdPrice = "0"
                         quantity = "1"
                         roomNumber = "Select Room"
                     }

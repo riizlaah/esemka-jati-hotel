@@ -73,7 +73,7 @@ object HttpClient {
         for(i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
             datas.add(Room(
-                obj.getString("id").toInt(),
+                obj.getInt("id"),
                 obj.getString("number")
             ))
         }
@@ -88,7 +88,7 @@ object HttpClient {
         for(i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
             datas.add(FD(
-                obj.getString("id").toInt(),
+                obj.getInt("id"),
                 obj.getString("name"),
                 obj.getString("type"),
                 obj.getInt("price")
@@ -97,7 +97,7 @@ object HttpClient {
         return datas
     }
     suspend fun sendFDReq(FDId: Int, roomId: Int, quantity: Int, totalPrice: Int) {
-        val body = """{"fdId": "$FDId", "roomId": "$roomId", "quantity": $quantity, "totalPrice": $totalPrice}"""
+        val body = """{"fdId": $FDId, "roomId": $roomId, "quantity": $quantity, "totalPrice": $totalPrice}"""
         return withContext(Dispatchers.IO) {
             send(HttpRequest(
                 address + "/fd_requests",
