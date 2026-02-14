@@ -116,16 +116,15 @@ fun Minibar(modifier: Modifier) {
         filterFDs()
     }
 
-    Column(modifier) {
+    Column(modifier.fillMaxSize()) {
         Box(modifier.fillMaxWidth()
             .background(DodgerBlue)
-            .padding(18.dp)) {
-            Text("LKS Esemka Jati Hotel Mini Bar", fontSize = 5.em, fontWeight = FontWeight.Bold, color = Color.White)
+            .padding(12.dp)) {
+            Text("LKS Esemka Jati Hotel Mini Bar", fontSize = 4.em, fontWeight = FontWeight.Bold, color = Color.White)
         }
         Column(
-            Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Spacer(modifier.height(75.dp))
+            Modifier.fillMaxSize().padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)) {
             CenteredRow {
                 Text("Room Number :")
                 Box {
