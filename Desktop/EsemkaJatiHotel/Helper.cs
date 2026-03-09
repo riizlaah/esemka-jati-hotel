@@ -71,7 +71,7 @@ namespace EsemkaJatiHotel
         public static bool isHashSame(string text, string hash)
         {
             var hashedText = hashSHA256(text);
-            return hashedText == hash;
+            return StringComparer.Ordinal.Compare(hashedText, hash) == 0;
         }
         public static Timer CreateTimer(int milis)
         {

@@ -2,7 +2,7 @@
 
 ... menurut saya ini adalah soal tersulit yang pernah saya kerjakan sejauh ini. Butuh sekitar 50 jam efektif (10 jam per hari) untuk menyelesaikan soal ini.
 
-> Pakai `json-server` (NPM Package) untuk menjalankan dummy api <br><br> Jangan lupa siapkan file default.jpg untuk setiap entity yang memiliki field photo/file ke folder yang telah didefinisikan di program (lihat code lebih lanjut)
+> Jangan lupa siapkan file default.jpg untuk setiap entity yang memiliki field photo/file ke folder yang telah didefinisikan di program (lihat code lebih lanjut)
 
 ## Preview
 

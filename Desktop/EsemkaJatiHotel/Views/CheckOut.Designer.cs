@@ -80,6 +80,7 @@
             // 
             // roomNumber
             // 
+            this.roomNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roomNumber.FormattingEnabled = true;
             this.roomNumber.Location = new System.Drawing.Point(123, 26);
             this.roomNumber.Name = "roomNumber";
@@ -120,6 +121,7 @@
             // 
             // itemStatus
             // 
+            this.itemStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.itemStatus.FormattingEnabled = true;
             this.itemStatus.Location = new System.Drawing.Point(340, 72);
             this.itemStatus.Name = "itemStatus";
@@ -183,6 +185,7 @@
             // 
             // items
             // 
+            this.items.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.items.FormattingEnabled = true;
             this.items.Location = new System.Drawing.Point(66, 34);
             this.items.Name = "items";
@@ -276,6 +279,7 @@
             this.foodNDrinksTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.foodNDrinksTable.Size = new System.Drawing.Size(603, 136);
             this.foodNDrinksTable.TabIndex = 9;
+            this.foodNDrinksTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.onFDCellContentClicked);
             // 
             // totalPrice
             // 

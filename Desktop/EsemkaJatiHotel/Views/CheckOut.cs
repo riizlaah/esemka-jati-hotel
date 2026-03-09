@@ -22,15 +22,18 @@ namespace EsemkaJatiHotel.Views
         {
             DBC = dbc;
             InitializeComponent();
+            Helper.GenerateTableColumn(foodNDrinksTable,
+                new string[] { "Name", "Type", "Price", "Qty", "Sub Total" },
+                new string[] { "FDName", "FDType", "FDPrice", "Qty", "TotalPrice" });
+            Helper.GenerateTableColumn(additionalItems,
+                new string[] { "Item", "Quantity", "Compensation Fee", "Sub Total" },
+                new string[] { "ItemName", "Qty", "CompensationFee", "TotalCharge" });
             roomNumber.DisplayMember = "RoomNumber"; roomNumber.ValueMember = "ReservationId";
             items.DisplayMember = "Name"; items.ValueMember = "Id";
             itemStatus.DisplayMember = "Name"; itemStatus.ValueMember = "Id";
             roomNumber.DataSource = DBC.ReservationRooms.Include("Room").Where(r => r.CheckOutDateTime == null && r.CheckInDateTime != null).ToList();
             items.DataSource = DBC.Items.ToList();
             itemStatus.DataSource = DBC.ItemStatuses.ToList();
-            Helper.GenerateTableColumn(additionalItems,
-                new string[] { "Item", "Quantity", "Compensation Fee", "Sub Total" },
-                new string[] { "ItemName", "Qty", "CompensationFee", "TotalCharge" });
             var rmItemCol = new DataGridViewButtonColumn();
             rmItemCol.Name = "Remove";
             rmItemCol.HeaderText = "Options";
@@ -38,9 +41,6 @@ namespace EsemkaJatiHotel.Views
             rmItemCol.UseColumnTextForButtonValue = true;
             additionalItems.Columns.Add(rmItemCol);
             additionalItems.DataSource = reservationRequestItems;
-            Helper.GenerateTableColumn(foodNDrinksTable,
-                new string[] { "Name", "Type", "Price", "Qty", "Sub Total" },
-                new string[] { "FDName", "FDType", "FDPrice", "Qty", "TotalPrice" });
             var rmItemCol1 = new DataGridViewButtonColumn();
             rmItemCol1.Name = "Remove";
             rmItemCol1.HeaderText = "Options";
@@ -55,7 +55,7 @@ namespace EsemkaJatiHotel.Views
         {
             if (roomNumber.Items.Count == 0) return;
             var resvId = (roomNumber.SelectedItem as ReservationRoom).Id;
-            FDCheckouts = new BindingList<FDCheckout>(DBC.FDCheckouts.Where(fd => fd.ReservationRoomId == resvId).ToList());
+            FDCheckouts = new BindingList<FDCheckout>(DBC.FDCheckouts.Include("FD").Where(fd => fd.ReservationRoomId == resvId).ToList());
             FDCheckoutsFirstCount = FDCheckouts.Count;
             foodNDrinksTable.DataSource = FDCheckouts;
         } 
@@ -183,6 +183,15 @@ namespace EsemkaJatiHotel.Views
         private void onItemStatusChanged(object sender, EventArgs e)
         {
             RecalculateItemPrice();
+        }
+
+        private void onFDCellContentClicked(object sender, DataGridViewCellEventArgs e)
+        {
+            if (foodNDrinksTable.Columns[e.ColumnIndex].Name == "Remove")
+            {
+                FDCheckouts.RemoveAt(e.RowIndex);
+                RecalculateTotalPrice();
+            }
         }
     }
 }
